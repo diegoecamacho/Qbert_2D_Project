@@ -494,6 +494,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4720788308143818}
   - component: {fileID: 212689660703916498}
+  - component: {fileID: 95695740260610674}
+  - component: {fileID: 114499059422433248}
   m_Layer: 0
   m_Name: Qbert
   m_TagString: Untagged
@@ -937,6 +939,23 @@ Transform:
   m_Father: {fileID: 4000768183238966}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95695740260610674
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1934408537267506}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a49d29e8f6d046f29fb0c6e5c301891, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114006478878364448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -953,6 +972,7 @@ MonoBehaviour:
   - {fileID: 114803218458583590}
   - {fileID: 114102936198796356}
   - {fileID: 114699795438645296}
+  CubeSprites: []
 --- !u!114 &114035144683312920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -969,6 +989,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 114673617882085956}
   - {fileID: 114988972378295638}
+  CubeSprites: []
 --- !u!114 &114082427491435566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,6 +1006,7 @@ MonoBehaviour:
   - {fileID: 114720184644429298}
   - {fileID: 114699795438645296}
   - {fileID: 114279091522271666}
+  CubeSprites: []
 --- !u!114 &114102936198796356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1001,6 +1023,7 @@ MonoBehaviour:
   - {fileID: 114006478878364448}
   - {fileID: 114664378989126842}
   - {fileID: 114957584901283730}
+  CubeSprites: []
 --- !u!114 &114145066479256306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1017,6 +1040,7 @@ MonoBehaviour:
   - {fileID: 114957584901283730}
   - {fileID: 0}
   - {fileID: 0}
+  CubeSprites: []
 --- !u!114 &114177366689209426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1033,6 +1057,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 114394805870791930}
   - {fileID: 114988493670359124}
+  CubeSprites:
+  - {fileID: 21300016, guid: f66e83534109e7d4da72d956904adcf4, type: 3}
+  - {fileID: 21300020, guid: f66e83534109e7d4da72d956904adcf4, type: 3}
 --- !u!114 &114247741845691648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1049,6 +1076,7 @@ MonoBehaviour:
   - {fileID: 114987446365130024}
   - {fileID: 0}
   - {fileID: 0}
+  CubeSprites: []
 --- !u!114 &114279091522271666
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1065,6 +1093,7 @@ MonoBehaviour:
   - {fileID: 114609050430549398}
   - {fileID: 114772346242032776}
   - {fileID: 114673933501927488}
+  CubeSprites: []
 --- !u!114 &114387017347916516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1081,6 +1110,7 @@ MonoBehaviour:
   - {fileID: 114664378989126842}
   - {fileID: 0}
   - {fileID: 0}
+  CubeSprites: []
 --- !u!114 &114394805870791930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1097,6 +1127,7 @@ MonoBehaviour:
   - {fileID: 114177366689209426}
   - {fileID: 114855269128848676}
   - {fileID: 114803218458583590}
+  CubeSprites: []
 --- !u!114 &114423493562374620
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1113,6 +1144,23 @@ MonoBehaviour:
   - {fileID: 114772346242032776}
   - {fileID: 0}
   - {fileID: 0}
+  CubeSprites: []
+--- !u!114 &114499059422433248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1934408537267506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cafcba8040e3c41688637b44f5d1996b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QbertIdleSprites:
+  - {fileID: 21300012, guid: f66e83534109e7d4da72d956904adcf4, type: 3}
+  - {fileID: 21300000, guid: f66e83534109e7d4da72d956904adcf4, type: 3}
+  - {fileID: 21300004, guid: f66e83534109e7d4da72d956904adcf4, type: 3}
+  - {fileID: 21300008, guid: f66e83534109e7d4da72d956904adcf4, type: 3}
 --- !u!114 &114537051514769128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1129,6 +1177,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 114673933501927488}
   - {fileID: 114035144683312920}
+  CubeSprites: []
 --- !u!114 &114609050430549398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1145,6 +1194,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 114279091522271666}
   - {fileID: 114537051514769128}
+  CubeSprites: []
 --- !u!114 &114628583239885014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1161,6 +1211,7 @@ MonoBehaviour:
   - {fileID: 114994075409530540}
   - {fileID: 114987446365130024}
   - {fileID: 114664378989126842}
+  CubeSprites: []
 --- !u!114 &114664378989126842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1177,6 +1228,7 @@ MonoBehaviour:
   - {fileID: 114102936198796356}
   - {fileID: 114387017347916516}
   - {fileID: 114145066479256306}
+  CubeSprites: []
 --- !u!114 &114673617882085956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1193,6 +1245,7 @@ MonoBehaviour:
   - {fileID: 114035144683312920}
   - {fileID: 0}
   - {fileID: 0}
+  CubeSprites: []
 --- !u!114 &114673933501927488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1209,6 +1262,7 @@ MonoBehaviour:
   - {fileID: 114537051514769128}
   - {fileID: 114682848158443556}
   - {fileID: 114673617882085956}
+  CubeSprites: []
 --- !u!114 &114682848158443556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1225,6 +1279,7 @@ MonoBehaviour:
   - {fileID: 114673933501927488}
   - {fileID: 0}
   - {fileID: 0}
+  CubeSprites: []
 --- !u!114 &114699795438645296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1241,6 +1296,7 @@ MonoBehaviour:
   - {fileID: 114082427491435566}
   - {fileID: 114957584901283730}
   - {fileID: 114772346242032776}
+  CubeSprites: []
 --- !u!114 &114720184644429298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1257,6 +1313,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 114082427491435566}
   - {fileID: 114609050430549398}
+  CubeSprites: []
 --- !u!114 &114772346242032776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1273,6 +1330,7 @@ MonoBehaviour:
   - {fileID: 114279091522271666}
   - {fileID: 114423493562374620}
   - {fileID: 114682848158443556}
+  CubeSprites: []
 --- !u!114 &114803218458583590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1289,6 +1347,7 @@ MonoBehaviour:
   - {fileID: 114988493670359124}
   - {fileID: 114006478878364448}
   - {fileID: 114082427491435566}
+  CubeSprites: []
 --- !u!114 &114855269128848676
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1305,6 +1364,7 @@ MonoBehaviour:
   - {fileID: 114394805870791930}
   - {fileID: 114994075409530540}
   - {fileID: 114006478878364448}
+  CubeSprites: []
 --- !u!114 &114957584901283730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1321,6 +1381,7 @@ MonoBehaviour:
   - {fileID: 114699795438645296}
   - {fileID: 114145066479256306}
   - {fileID: 114423493562374620}
+  CubeSprites: []
 --- !u!114 &114987446365130024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1337,6 +1398,7 @@ MonoBehaviour:
   - {fileID: 114628583239885014}
   - {fileID: 114247741845691648}
   - {fileID: 114387017347916516}
+  CubeSprites: []
 --- !u!114 &114988493670359124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1353,6 +1415,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 114803218458583590}
   - {fileID: 114720184644429298}
+  CubeSprites: []
 --- !u!114 &114988972378295638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1369,6 +1432,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  CubeSprites: []
 --- !u!114 &114994075409530540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1385,6 +1449,7 @@ MonoBehaviour:
   - {fileID: 114855269128848676}
   - {fileID: 114628583239885014}
   - {fileID: 114102936198796356}
+  CubeSprites: []
 --- !u!212 &212044848206619456
 SpriteRenderer:
   m_ObjectHideFlags: 1

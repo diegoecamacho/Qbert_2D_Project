@@ -103,16 +103,19 @@ public class QbertScript : MonoBehaviour
             if (currentCube)
             {
                 CurrentCube = destNode;
+                CurrentCube.Selected = true;
                 movementDir = _dir;
                 moveNow = true;
                 //qBertAnimationComponent.Play();
                 qbertAnim.SetBool("Jump", true);
-                qbertAnim.SetInteger("Direction", _dir);
-            }
+                qbertAnim.SetFloat("Direction", _dir);
+               
+        }
         }
 
         void DisableJump()
         {
             qbertAnim.SetBool("Jump", false);
+
         }
 }
