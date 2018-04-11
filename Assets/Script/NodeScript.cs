@@ -33,22 +33,14 @@ public class NodeScript : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
-    {
-        if (Selected)
-        {
-            ChangeCubeSprite();
-        }
-    }
-
-    private void ChangeCubeSprite()
+    public void SelectCube()
     {
         if (!complete)
         {
             currentSprite++;
             spriteRenderer.sprite = CubeSprites[currentSprite];
-            GameManager.Score += 25;
             complete = (currentSprite == CubeSprites.Length - 1);
+            GameManager.Score += 25;
         }
     }
 }

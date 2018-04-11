@@ -5,20 +5,25 @@ using UnityEngine;
 public class RedBallScript : MonoBehaviour {
 
     // Components
-    Animator animator; 
+    Animator animator;
+
+    bool animate = true;
 
     bool startSequence = true;
     NodeScript currentNode;
     private bool moving = false;
     Vector3 posOffset;
 
-    public bool Move { get; private set; }
+    public bool Alive = false;
 
     // Use this for initialization
     public void StartScript (NodeScript node) {
+        
         animator = GetComponent<Animator>();
         startSequence = true;
+        Alive = true;
         currentNode = node;
+        StartCoroutine(MovementRoutine());
 	}
 	
 	// Update is called once per frame
@@ -26,10 +31,16 @@ public class RedBallScript : MonoBehaviour {
     {
         if (moving)
         {
-            transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.005f);
+            transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.02f);
         }
         if (transform.position == posOffset)
         {
+            if (animate)
+            {
+                animator.SetBool("Collision", true);
+                startSequence = false;
+                animate = false;
+            }
             moving = false;
         }
 
@@ -37,26 +48,26 @@ public class RedBallScript : MonoBehaviour {
 
     private IEnumerator MovementRoutine()
     {
-        Debug.Log("Hello");
-        if (startSequence)
+        while (Alive)
         {
-            Debug.Log("Alive");
-            posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.15f, 0);
-            ;
-            if (transform.position == posOffset)
+            if (startSequence)
             {
-                animator.SetBool("Collision", true);
-                startSequence = false;
-                yield return null;//new WaitForSeconds(1.0f);
-            }
-        }
-        else
-        {
- 
-                currentNode = currentNode.Adjacent[Random.Range(2, 4)];
-                posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.15f, 0);
+                animate = true;
+                posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.10f, 0);
                 moving = true;
-                yield return null;//new WaitForSeconds(1.0f);
+            }
+            else
+            {
+                animate = true;
+                currentNode = currentNode.Adjacent[Random.Range(2, 4)];
+                posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.10f, 0);
+                moving = true;
+            }
+            yield return new WaitForSeconds(1.0f);
         }
+    }
+
+    public void DisableCollision(){
+        animator.SetBool("Collision", false);
     }
 }

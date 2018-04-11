@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour {
 	void Start ()
     {
         Search();
-
     }
 
     private void Search()
@@ -31,20 +30,14 @@ public class GameManager : MonoBehaviour {
         {
             foreach (var node in gameNodes)
             {
-                if (node.Selected)
-                { 
-                
-                        Debug.Log(Score);
-                        CheckGameOver();
-                        node.Selected = false;
-
+                if (node.Selected == true)
+                {
+                    node.SelectCube();
+                    CheckGameOver();
+                    node.Selected = false;
                 }
             }
-
         }
-        
-
-
     }
 
     void CheckGameOver()
@@ -52,7 +45,7 @@ public class GameManager : MonoBehaviour {
         bool gameOver = true;
         foreach (var node in gameNodes)
         {
-            if (!node.complete)
+            if(!node.complete)
             {
                 gameOver = false;
             }

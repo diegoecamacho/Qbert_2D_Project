@@ -41,7 +41,6 @@ public class EnemySpawner : MonoBehaviour {
             {
                 SpawnObject = Random.Range(1, 3);
             }
-            Debug.Log(SpawnObject);
             switch (SpawnObject)
             {
                 case 0:
@@ -63,11 +62,11 @@ public class EnemySpawner : MonoBehaviour {
     private void SpawnEnemy(GameObject enemyPrefab)
     {
         currentSpawnLoc = Random.Range(0, SpawnLocations.Length);
-        Debug.Log(currentSpawnLoc);
+        //Debug.Log(currentSpawnLoc);
         Vector3 currentNode = SpawnLocations[currentSpawnLoc].transform.position;
         Vector3 SpawnLoc = new Vector3(currentNode.x, currentNode.y + 1, currentNode.z);
         GameObject currEnemy = Instantiate(enemyPrefab, SpawnLoc, new Quaternion());
         currEnemy.GetComponent<RedBallScript>().StartScript(SpawnLocations[currentSpawnLoc]);
-        Debug.Log("Spawn");
+        //Debug.Log("Spawn");
     }
 }

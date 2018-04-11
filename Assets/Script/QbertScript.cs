@@ -7,11 +7,12 @@ public class QbertScript : MonoBehaviour
 
     //GameObject Component References
     Animation qBertAnimationComponent;
-    SpriteRenderer qbertSpriteRend;
     Animator qbertAnim;
+    [SerializeField]GameObject DeathSprite;
 
     //Current Cube
     NodeScript currentCube;
+    NodeScript PreviousNode;
 
     public NodeScript CurrentCube
     {
@@ -26,26 +27,23 @@ public class QbertScript : MonoBehaviour
         }
     }
 
+
+
     /// <summary>
     /// QbertS Idle Sprites Array
     /// </summary>
     [SerializeField] Sprite[] QbertIdleSprites;
-    int movementDir = 0;
 
     bool moveNow = false;
+    bool AllowInput = true;
 
 
     // Use this for initialization
     void Start()
     {
         qBertAnimationComponent = GetComponent<Animation>();
-        qbertSpriteRend = GetComponent<SpriteRenderer>();
         currentCube = transform.parent.GetComponent<NodeScript>();
         qbertAnim = GetComponent<Animator>();
-        if (CurrentCube != null)
-        {
-            Debug.Log(CurrentCube.name);
-        }
     }
 
     // Update is called once per frame
@@ -58,64 +56,72 @@ public class QbertScript : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.05f);
             if (transform.position == posOffset)
             {
-                Debug.Log(movementDir);
                 moveNow = false;
+                if (currentCube.tag == "nullNode")
+                {
+                    DeathSprite.SetActive(true);
+                    Invoke("DeathAnim", 2.0f);
+                    return;
+                }
             }
         }
     }
 
     void InputManager()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (AllowInput)
         {
-            QbertMove(CurrentCube.Adjacent[0], 0);
-            Debug.Log("Q");
-        }
-        else if (Input.GetKeyDown(KeyCode.W))
-        {
-            QbertMove(CurrentCube.Adjacent[1], 1);
-            Debug.Log("W");
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            QbertMove(CurrentCube.Adjacent[2], 2);
-            Debug.Log("A");
-        }
-        else if (Input.GetKeyDown(KeyCode.S)){
-            QbertMove(CurrentCube.Adjacent[3], 3);
-            Debug.Log("C");
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                QbertMove(CurrentCube.Adjacent[0], 0);
+            }
+            else if (Input.GetKeyDown(KeyCode.W))
+            {
+                QbertMove(CurrentCube.Adjacent[1], 1);
+            }
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                QbertMove(CurrentCube.Adjacent[2], 2);
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                QbertMove(CurrentCube.Adjacent[3], 3);
+
+            }
         }
 
          if (Input.GetKeyDown(KeyCode.Escape))
          {
                 Debug.Break();
          }
-
-         if (Input.GetKeyDown(KeyCode.Space))
-         {
-            qbertSpriteRend.sprite = QbertIdleSprites[0];
-            Debug.Log(0);
-         }
     }
 
         void QbertMove(NodeScript destNode, int _dir)
-        {
-            if (currentCube)
-            {
-                CurrentCube = destNode;
-                CurrentCube.Selected = true;
-                movementDir = _dir;
-                moveNow = true;
-                //qBertAnimationComponent.Play();
-                qbertAnim.SetBool("Jump", true);
-                qbertAnim.SetFloat("Direction", _dir);
-               
-        }
+         {
+            AllowInput = false;
+            PreviousNode = CurrentCube;
+            CurrentCube = destNode;
+            CurrentCube.Selected = true;
+            moveNow = true;
+            qbertAnim.SetBool("Jump", true);
+            qbertAnim.SetFloat("Direction", _dir);
+            Invoke("DisableJump", 0.4f);
         }
 
         void DisableJump()
         {
+
+            AllowInput = true;
             qbertAnim.SetBool("Jump", false);
 
         }
+
+        void DeathAnim(){
+        
+            DeathSprite.SetActive(false);
+            CurrentCube = PreviousNode;
+            moveNow = true;
+
+        }
+
 }
