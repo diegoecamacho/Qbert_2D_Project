@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedBallScript : EnemyBase {
+public class CoilyBallScript : EnemyBase {
 
     // Components
     Animator animator;
@@ -41,10 +41,6 @@ public class RedBallScript : EnemyBase {
                 animate = false;
             }
             moving = false;
-            if (currentNode.tag == "nullNode")
-            {
-                Destroy(gameObject);
-            }
         }
 
     }
@@ -61,10 +57,18 @@ public class RedBallScript : EnemyBase {
             }
             else
             {
-                animate = true;
-                currentNode = currentNode.Adjacent[Random.Range(2, 4)];
-                posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.10f, 0);
-                moving = true;
+                if (currentNode.Adjacent[Random.Range(2, 4)].tag == "nullNode")
+                {
+                    //Instatiate Coily
+                    Debug.Log("SpawnCoily");
+                }
+                else
+                {
+                    animate = true;
+                    currentNode = currentNode.Adjacent[Random.Range(2, 4)];
+                    posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.10f, 0);
+                    moving = true;
+                }
             }
             yield return new WaitForSeconds(1.0f);
         }

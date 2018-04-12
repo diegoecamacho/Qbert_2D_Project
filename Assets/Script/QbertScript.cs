@@ -27,13 +27,6 @@ public class QbertScript : MonoBehaviour
         }
     }
 
-
-
-    /// <summary>
-    /// QbertS Idle Sprites Array
-    /// </summary>
-    [SerializeField] Sprite[] QbertIdleSprites;
-
     bool moveNow = false;
     bool AllowInput = true;
 
@@ -97,18 +90,23 @@ public class QbertScript : MonoBehaviour
     }
 
         void QbertMove(NodeScript destNode, int _dir)
-         {
-            AllowInput = false;
-            PreviousNode = CurrentCube;
-            CurrentCube = destNode;
-            CurrentCube.Selected = true;
-            moveNow = true;
-            qbertAnim.SetBool("Jump", true);
-            qbertAnim.SetFloat("Direction", _dir);
-            Invoke("DisableJump", 0.4f);
-        }
+    {
+        AllowInput = false;
+        qbertAnim.SetBool("Jump", true);
+        qbertAnim.SetFloat("Direction", _dir);
+        PreviousNode = CurrentCube;
+        CurrentCube = destNode;
+        Invoke("Move",0.05f);
+    }
 
-        void DisableJump()
+    private void Move()
+    {
+        CurrentCube.Selected = true;
+        moveNow = true;
+        Invoke("DisableJump", 0.4f);
+    }
+
+    void DisableJump()
         {
 
             AllowInput = true;

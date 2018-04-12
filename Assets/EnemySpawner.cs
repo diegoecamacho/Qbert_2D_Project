@@ -66,7 +66,7 @@ public class EnemySpawner : MonoBehaviour {
         Vector3 currentNode = SpawnLocations[currentSpawnLoc].transform.position;
         Vector3 SpawnLoc = new Vector3(currentNode.x, currentNode.y + 1, currentNode.z);
         GameObject currEnemy = Instantiate(enemyPrefab, SpawnLoc, new Quaternion());
-        currEnemy.GetComponent<RedBallScript>().StartScript(SpawnLocations[currentSpawnLoc]);
+        currEnemy.GetComponent<EnemyBase>().StartScript(SpawnLocations[currentSpawnLoc]);
         //Debug.Log("Spawn");
     }
 }
