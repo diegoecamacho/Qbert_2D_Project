@@ -96,14 +96,14 @@ public class QbertScript : MonoBehaviour
         qbertAnim.SetFloat("Direction", _dir);
         PreviousNode = CurrentCube;
         CurrentCube = destNode;
-        Invoke("Move",0.05f);
+        Move();
     }
 
     private void Move()
     {
         CurrentCube.Selected = true;
         moveNow = true;
-        Invoke("DisableJump", 0.4f);
+        Invoke("DisableJump", 0.2f);
     }
 
     void DisableJump()
