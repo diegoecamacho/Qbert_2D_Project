@@ -70,6 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50579398dea7130499a0048129852af2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoilyPrefab: {fileID: 1130066562070996, guid: d97f85c971f044436b3233cf0556bf7e,
+    type: 2}
   Alive: 0
 --- !u!212 &212418820833056594
 SpriteRenderer:

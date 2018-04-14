@@ -6,6 +6,7 @@ public class CoilyBallScript : EnemyBase {
 
     // Components
     Animator animator;
+    [SerializeField] GameObject CoilyPrefab;
 
     bool animate = true;
 
@@ -31,6 +32,7 @@ public class CoilyBallScript : EnemyBase {
         if (moving)
         {
             transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.02f);
+
         }
         if (transform.position == posOffset)
         {
@@ -39,7 +41,8 @@ public class CoilyBallScript : EnemyBase {
                 animator.SetBool("Collision", true);
                 startSequence = false;
                 animate = false;
-            }
+            } 
+
             moving = false;
         }
 
@@ -61,6 +64,9 @@ public class CoilyBallScript : EnemyBase {
                 {
                     //Instatiate Coily
                     Debug.Log("SpawnCoily");
+                    posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.20f, 0);
+                    Instantiate(CoilyPrefab, posOffset, new Quaternion());
+                    Destroy(gameObject);
                 }
                 else
                 {

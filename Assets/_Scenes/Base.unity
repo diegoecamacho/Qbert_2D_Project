@@ -321,6 +321,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &571711449 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1130066562070996, guid: d97f85c971f044436b3233cf0556bf7e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1697233101}
+--- !u!114 &571711453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 571711449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8846ac07bc12240a18d87ac7d6f12d37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &801176895
 Prefab:
   m_ObjectHideFlags: 0
@@ -362,7 +378,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1934408537267506, guid: fb177f67d9db94379ba80f8fecc4af3e, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934408537267506, guid: fb177f67d9db94379ba80f8fecc4af3e, type: 2}
+      propertyPath: m_TagString
+      value: Qbert
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb177f67d9db94379ba80f8fecc4af3e, type: 2}
@@ -515,6 +535,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: ef3e65b65c8df4e7080ad0aae66d7e3a, type: 2}
+    - target: {fileID: 1130066562070996, guid: d97f85c971f044436b3233cf0556bf7e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d97f85c971f044436b3233cf0556bf7e, type: 2}
   m_IsPrefabParent: 0
