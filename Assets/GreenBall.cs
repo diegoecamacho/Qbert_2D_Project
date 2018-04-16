@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class RedBallScript : EnemyBase
+public class GreenBall : EnemyBase
 {
     // Components
     private Animator animator;
+    SpriteRenderer sprite;
 
     private bool animate = true;
 
@@ -17,6 +18,7 @@ public class RedBallScript : EnemyBase
     // Use this for initialization
     public override void StartScript(NodeScript node)
     {
+        sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         startSequence = true;
         Alive = true;
@@ -27,25 +29,22 @@ public class RedBallScript : EnemyBase
     // Update is called once per frame
     private void Update()
     {
-        if (GameManager.enemyUpdate)
+        if (moving)
         {
-            if (moving)
+            transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.02f);
+        }
+        if (transform.position == posOffset)
+        {
+            if (animate)
             {
-                transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.02f);
+                animator.SetBool("Collision", true);
+                startSequence = false;
+                animate = false;
             }
-            if (transform.position == posOffset)
+            moving = false;
+            if (currentNode.tag == "nullNode")
             {
-                if (animate)
-                {
-                    animator.SetBool("Collision", true);
-                    startSequence = false;
-                    animate = false;
-                }
-                moving = false;
-                if (currentNode.tag == "nullNode")
-                {
-                    Destroy(gameObject);
-                }
+                Destroy(gameObject);
             }
         }
     }
@@ -76,13 +75,19 @@ public class RedBallScript : EnemyBase
         animator.SetBool("Collision", false);
     }
 
+    void FreezeGame()
+    {
+        GameManager.enemyUpdate = !GameManager.enemyUpdate;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Qbert")
         {
-            collision.GetComponent<QbertScript>().PlayerLives--;
-            Debug.Log(collision.GetComponent<QbertScript>().PlayerLives);
-            Destroy(gameObject);
+            FreezeGame();
+            sprite.enabled = false;
+            Invoke("FreezeGame", 2.0f);
+            Destroy(gameObject,3.0f);
         }
     }
 }

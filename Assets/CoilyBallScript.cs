@@ -1,71 +1,87 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CoilyBallScript : EnemyBase {
-
+public class CoilyBallScript : EnemyBase
+{
+    public static CoilyBallScript instance;
     // Components
-    Animator animator;
-    [SerializeField] GameObject CoilyPrefab;
+    private Animator animator;
 
-    bool animate = true;
+    [SerializeField] private GameObject CoilyPrefab;
 
-    bool startSequence = true;
+    [SerializeField] private float enemySpeed = 0.01f;
+    [SerializeField] private float movementDelay = 0.05f;
+
+    private bool animate = true;
+
+    private bool startSequence = true;
     private bool moving = false;
-    Vector3 posOffset;
+    private Vector3 posOffset;
 
     public bool Alive = false;
 
     // Use this for initialization
-    public override void StartScript (NodeScript node) {
-        
+    public override void StartScript(NodeScript node)
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         animator = GetComponent<Animator>();
         startSequence = true;
         Alive = true;
         currentNode = node;
-        StartCoroutine(MovementRoutine());
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (moving)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.02f);
-
-        }
-        if (transform.position == posOffset)
-        {
-            if (animate)
-            {
-                animator.SetBool("Collision", true);
-                startSequence = false;
-                animate = false;
-            } 
-
-            moving = false;
-        }
-
+        MovementRoutine();
     }
 
-    private IEnumerator MovementRoutine()
+    // Update is called once per frame
+    private void Update()
     {
-        while (Alive)
+        if (GameManager.enemyUpdate)
+        {
+            if (moving)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, posOffset, enemySpeed);
+
+                if (transform.position == posOffset)
+                {
+                    if (animate)
+                    {
+                        animator.SetBool("Collision", true);
+                        animate = false;
+                    }
+                    moving = false;
+                    Invoke("MovementRoutine", movementDelay);
+                }
+            }
+        }
+    }
+
+    private void MovementRoutine()
+    {
+        if (Alive)
         {
             if (startSequence)
             {
                 animate = true;
                 posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.10f, 0);
                 moving = true;
+                startSequence = false;
             }
             else
             {
                 if (currentNode.Adjacent[Random.Range(2, 4)].tag == "nullNode")
                 {
                     //Instatiate Coily
-                    Debug.Log("SpawnCoily");
+                    //Debug.Log("SpawnCoily");
                     posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.20f, 0);
-                    Instantiate(CoilyPrefab, posOffset, new Quaternion());
+                    GameObject coily = Instantiate(CoilyPrefab, posOffset, new Quaternion());
+                    coily.GetComponent<CoilyScript>().StartScript(currentNode);
+
                     Destroy(gameObject);
                 }
                 else
@@ -76,11 +92,20 @@ public class CoilyBallScript : EnemyBase {
                     moving = true;
                 }
             }
-            yield return new WaitForSeconds(1.0f);
         }
     }
 
-    public void DisableCollision(){
+    public void DisableCollision()
+    {
         animator.SetBool("Collision", false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Qbert")
+        {
+            collision.GetComponent<QbertScript>().PlayerLives--;
+            Debug.Log(collision.GetComponent<QbertScript>().PlayerLives);
+        }
     }
 }

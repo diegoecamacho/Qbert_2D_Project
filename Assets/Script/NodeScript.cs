@@ -1,19 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class NodeScript : MonoBehaviour {
-   public NodeScript[] Adjacent;
+public class NodeScript : MonoBehaviour
+{
+    public NodeScript[] Adjacent;
 
     ///Component Reference
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     /// <summary>
     /// Ordered from non selected down.
     /// </summary>
-    [SerializeField] Sprite[] CubeSprites;
-    int currentSprite = 0;
-    private bool selected = false;
+    [SerializeField] private Sprite[] CubeSprites;
+
+    private int currentSprite = 0;
+    protected bool selected = false;
     public bool complete;
 
     public bool Selected

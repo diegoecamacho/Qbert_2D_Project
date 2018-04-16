@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyBase : MonoBehaviour {
+public class EnemyBase : MonoBehaviour
+{
     protected NodeScript currentNode;
+
     public virtual void StartScript(NodeScript node)
     {
-
+        currentNode = node;
     }
 }

@@ -7,6 +7,10 @@ TagManager:
   - Nodes
   - nullNode
   - Qbert
+  - ElevatorNode
+  - purpleBall
+  - redBall
+  - greenBall
   layers:
   - Default
   - TransparentFX

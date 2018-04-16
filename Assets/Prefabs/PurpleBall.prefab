@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212418820833056594}
   - component: {fileID: 95123971854413706}
   - component: {fileID: 114284279002915574}
+  - component: {fileID: 61336683370300172}
   m_Layer: 0
   m_Name: PurpleBall
   m_TagString: Untagged
@@ -36,12 +37,37 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1076802418501942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0062883, y: 1.2482125, z: 0}
+  m_LocalPosition: {x: -0.24781957, y: 2.1859524, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61336683370300172
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1076802418501942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.13}
+    newSize: {x: 0.13, y: 0.1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.08}
+  m_EdgeRadius: 0
 --- !u!95 &95123971854413706
 Animator:
   serializedVersion: 3
@@ -72,6 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoilyPrefab: {fileID: 1130066562070996, guid: d97f85c971f044436b3233cf0556bf7e,
     type: 2}
+  enemySpeed: 0.05
+  movementDelay: 0.5
   Alive: 0
 --- !u!212 &212418820833056594
 SpriteRenderer:

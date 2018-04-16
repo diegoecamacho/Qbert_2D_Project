@@ -1,15 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public static bool enemyUpdate = true;
+    public static int Score = 0;
+    private int playerLives = 3;
 
-     public static int Score = 0;
-    List<NodeScript> gameNodes;
-    bool startSearch = false;
+    private List<NodeScript> gameNodes;
+    private bool startSearch = false;
 
-	// Use this for initialization
-	void Start ()
+    public int PlayerLives
+    {
+        get
+        {
+            return playerLives;
+        }
+
+        set
+        {
+            playerLives = value;
+        }
+    }
+
+    // Use this for initialization
+    private void Start()
     {
         Search();
     }
@@ -24,7 +39,7 @@ public class GameManager : MonoBehaviour {
         startSearch = true;
     }
 
-    void Update()
+    private void Update()
     {
         if (startSearch)
         {
@@ -40,16 +55,15 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void CheckGameOver()
+    private void CheckGameOver()
     {
         bool gameOver = true;
         foreach (var node in gameNodes)
         {
-            if(!node.complete)
+            if (!node.complete)
             {
                 gameOver = false;
             }
-
         }
         if (gameOver)
         {
