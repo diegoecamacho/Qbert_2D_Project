@@ -9,6 +9,9 @@ public class GreenBall : EnemyBase
     AudioSource audioSource;
     [SerializeField]AudioClip QbertPrize;
 
+    [SerializeField]float enemySpeed;
+
+
     private bool animate = true;
 
     private bool startSequence = true;
@@ -36,7 +39,7 @@ public class GreenBall : EnemyBase
     {
         if (moving)
         {
-            transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.02f);
+            transform.position = Vector2.MoveTowards(transform.position, posOffset, enemySpeed * Time.deltaTime);
         }
         if (transform.position == posOffset)
         {

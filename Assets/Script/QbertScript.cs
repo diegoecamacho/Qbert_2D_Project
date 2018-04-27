@@ -94,7 +94,7 @@ public class QbertScript : MonoBehaviour
         if (moveNow)
         {
             Vector3 posOffset = new Vector3(CurrentCube.transform.position.x, CurrentCube.transform.position.y + 0.15f, 0);
-            transform.position = Vector2.MoveTowards(transform.position, posOffset, movementSpeed);
+            transform.position = Vector2.MoveTowards(transform.position, posOffset, movementSpeed * Time.deltaTime);
             if (transform.position == posOffset)
             {
                 moveNow = false;

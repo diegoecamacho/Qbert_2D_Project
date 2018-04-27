@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   QbertPrize: {fileID: 8300000, guid: 500c1894e55603e419679ab1a82fa32a, type: 3}
+  enemySpeed: 1
   Alive: 0
 --- !u!212 &212418820833056594
 SpriteRenderer:

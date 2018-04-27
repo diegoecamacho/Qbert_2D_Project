@@ -47,7 +47,7 @@ public class CoilyBallScript : EnemyBase
         {
             if (moving)
             {
-                transform.position = Vector2.MoveTowards(transform.position, posOffset, enemySpeed);
+                transform.position = Vector2.MoveTowards(transform.position, posOffset, enemySpeed * Time.deltaTime);
 
                 if (transform.position == posOffset)
                 {

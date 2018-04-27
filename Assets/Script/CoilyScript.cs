@@ -114,7 +114,7 @@ public class CoilyScript : EnemyBase
                     }
                     else
                     {
-                        transform.position = Vector2.MoveTowards(transform.position, posOffset, movementSpeed);
+                        transform.position = Vector2.MoveTowards(transform.position, posOffset, movementSpeed * Time.deltaTime);
 
                         if (transform.position == posOffset)
                         {

@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306e3b8661130d6408582c86aa1ca6a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpeed: 0.9
   Alive: 0
 --- !u!212 &212418820833056594
 SpriteRenderer:

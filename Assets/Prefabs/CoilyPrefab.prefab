@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoilyHop: {fileID: 8300000, guid: 6d0f1ee36c6617145b86e4c8f22f7338, type: 3}
   CoilyFall: {fileID: 8300000, guid: a8af35ca4869d7a4e8e3a78cbc71efd9, type: 3}
-  movementSpeed: 0.07
+  movementSpeed: 0.7
   movementDelay: 0.5
   moveCoily: 1
 --- !u!212 &212794995826224586

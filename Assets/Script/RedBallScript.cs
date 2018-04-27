@@ -9,6 +9,8 @@ public class RedBallScript : EnemyBase
 
     private bool animate = true;
 
+    [SerializeField] float enemySpeed;
+
     private bool startSequence = true;
     private bool moving = false;
     private Vector3 posOffset;
@@ -33,7 +35,7 @@ public class RedBallScript : EnemyBase
         {
             if (moving)
             {
-                transform.position = Vector2.MoveTowards(transform.position, posOffset, 0.02f);
+                transform.position = Vector2.MoveTowards(transform.position, posOffset, enemySpeed * Time.deltaTime);
             }
             if (transform.position == posOffset)
             {
