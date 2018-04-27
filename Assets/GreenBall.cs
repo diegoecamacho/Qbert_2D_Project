@@ -6,6 +6,8 @@ public class GreenBall : EnemyBase
     // Components
     private Animator animator;
     SpriteRenderer sprite;
+    AudioSource audioSource;
+    [SerializeField]AudioClip QbertPrize;
 
     private bool animate = true;
 
@@ -15,9 +17,12 @@ public class GreenBall : EnemyBase
 
     public bool Alive = false;
 
+    bool play = true;
+
     // Use this for initialization
     public override void StartScript(NodeScript node)
     {
+        audioSource = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         startSequence = true;
@@ -37,14 +42,18 @@ public class GreenBall : EnemyBase
         {
             if (animate)
             {
+                audioSource.Play();
                 animator.SetBool("Collision", true);
                 startSequence = false;
                 animate = false;
             }
             moving = false;
-            if (currentNode.tag == "nullNode")
+            if (currentNode != null)
             {
-                Destroy(gameObject);
+                if (currentNode.tag == "nullNode")
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
@@ -77,14 +86,23 @@ public class GreenBall : EnemyBase
 
     void FreezeGame()
     {
-        GameManager.enemyUpdate = !GameManager.enemyUpdate;
+        GameManager.enemyUpdate = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Qbert")
         {
-            FreezeGame();
+            if (play)
+            {
+                audioSource.clip = QbertPrize;
+                audioSource.Play();
+                play = false;
+
+            }
+            
+            GameManager.enemyUpdate = false;
+            GameManager.Score += 100;
             sprite.enabled = false;
             Invoke("FreezeGame", 2.0f);
             Destroy(gameObject,3.0f);

@@ -5,6 +5,7 @@ public class RedBallScript : EnemyBase
 {
     // Components
     private Animator animator;
+    AudioSource audio;
 
     private bool animate = true;
 
@@ -17,6 +18,7 @@ public class RedBallScript : EnemyBase
     // Use this for initialization
     public override void StartScript(NodeScript node)
     {
+        audio = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         startSequence = true;
         Alive = true;
@@ -37,14 +39,18 @@ public class RedBallScript : EnemyBase
             {
                 if (animate)
                 {
+                    audio.Play();
                     animator.SetBool("Collision", true);
                     startSequence = false;
                     animate = false;
                 }
                 moving = false;
-                if (currentNode.tag == "nullNode")
+                if (currentNode != null)
                 {
-                    Destroy(gameObject);
+                    if (currentNode.tag == "nullNode")
+                    {
+                        Destroy(gameObject);
+                    }
                 }
             }
         }
@@ -62,10 +68,13 @@ public class RedBallScript : EnemyBase
             }
             else
             {
-                animate = true;
-                currentNode = currentNode.Adjacent[Random.Range(2, 4)];
-                posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.10f, 0);
-                moving = true;
+                if (currentNode.Adjacent != null)
+                {
+                    animate = true;
+                    currentNode = currentNode.Adjacent[Random.Range(2, 4)];
+                    posOffset = new Vector3(currentNode.transform.position.x, currentNode.transform.position.y + 0.10f, 0);
+                    moving = true;
+                }
             }
             yield return new WaitForSeconds(1.0f);
         }
@@ -78,11 +87,15 @@ public class RedBallScript : EnemyBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        int count = 0;
         if (collision.tag == "Qbert")
         {
-            collision.GetComponent<QbertScript>().PlayerLives--;
-            Debug.Log(collision.GetComponent<QbertScript>().PlayerLives);
-            Destroy(gameObject);
+            if (count++ == 0)
+            {
+                Alive = false;
+                GameManager.playerLives--;
+                Destroy(gameObject);
+            }
         }
     }
 }

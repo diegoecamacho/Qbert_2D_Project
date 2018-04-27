@@ -9,6 +9,10 @@ public class CoilyScript : EnemyBase
     /// Components
     /// </summary>
     private SpriteRenderer spriteRenderer;
+    AudioSource audioSource;
+    [SerializeField] AudioClip CoilyHop;
+    [SerializeField] AudioClip CoilyFall;
+    bool deathSound = true;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -59,6 +63,7 @@ public class CoilyScript : EnemyBase
         animationQueue = new Queue<int>();
 
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -76,9 +81,17 @@ public class CoilyScript : EnemyBase
         {
             if (startUpdate)
             {
+                if (qbert == null)
+                {
+                    qbert = GameObject.FindGameObjectWithTag("Qbert").GetComponent<QbertScript>();
+                    LoadPath();
+                    moveCoily = true;
+                   
+                }
                 if (qbert.GetComponent<QbertScript>().CurrentCube == currentNode && transform.position == posOffset)
                 {
                     Debug.Log("Same Cube");
+                    GameManager.playerLives--;
                     Destroy(gameObject);
                 }
 
@@ -87,10 +100,13 @@ public class CoilyScript : EnemyBase
                     destCube = qbert.CurrentCube;
                     LoadPath();
                 }
+
                 if (moveCoily)
                 {
                     if (animate)
                     {
+                        audioSource.clip = CoilyHop;
+                        audioSource.Play();
                         Debug.Log(animationDir);
                         animator.SetFloat("Direction", animationDir);
                         animator.SetBool("Jump", true);
@@ -123,6 +139,14 @@ public class CoilyScript : EnemyBase
 
     private void DeathSequence()
     {
+        if (deathSound)
+        {
+            audioSource.clip = CoilyFall;
+            audioSource.Play();
+            deathSound = false;
+        }
+        
+        GameManager.Score += 500;
         startUpdate = false;
         rb.isKinematic = false;
         rb.simulated = true;

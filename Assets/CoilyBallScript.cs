@@ -5,6 +5,7 @@ public class CoilyBallScript : EnemyBase
     public static CoilyBallScript instance;
     // Components
     private Animator animator;
+    AudioSource audioSource;
 
     [SerializeField] private GameObject CoilyPrefab;
 
@@ -31,6 +32,7 @@ public class CoilyBallScript : EnemyBase
             Destroy(gameObject);
         }
 
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         startSequence = true;
         Alive = true;
@@ -51,6 +53,7 @@ public class CoilyBallScript : EnemyBase
                 {
                     if (animate)
                     {
+                        audioSource.Play();
                         animator.SetBool("Collision", true);
                         animate = false;
                     }
@@ -102,10 +105,13 @@ public class CoilyBallScript : EnemyBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        int count = 0;
         if (collision.tag == "Qbert")
         {
-            collision.GetComponent<QbertScript>().PlayerLives--;
-            Debug.Log(collision.GetComponent<QbertScript>().PlayerLives);
+            if (count++ == 0)
+            {
+                GameManager.playerLives--;
+            }
         }
     }
 }

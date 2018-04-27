@@ -12,6 +12,10 @@ public class ElevatorScript : NodeScript
     // Update is called once per frame
     private void Update()
     {
+        if (Qbert == null)
+        {
+            Qbert = GameObject.FindGameObjectWithTag("Qbert").GetComponent<QbertScript>();
+        }
         if (selected)
         {
             Qbert.transform.parent = transform;
